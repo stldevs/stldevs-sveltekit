@@ -1,6 +1,6 @@
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 
-export const load: PageServerLoad = async ({ params, fetch }) => {
+export const load: PageLoad = async ({ fetch }) => {
 	const r = await fetch('/stldevs-api/runs')
 	if (!r.ok) {
 		console.log('Error fetching', r);

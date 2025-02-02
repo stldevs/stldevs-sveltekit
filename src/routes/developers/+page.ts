@@ -1,13 +1,13 @@
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ fetch }) => {
-	const r = await fetch('/stldevs-api/langs')
+	const r = await fetch('/stldevs-api/devs?type=User')
 	if (!r.ok) {
 		console.log('Error fetching', r);
 		return {};
 	}
 
 	return {
-		toplangs: await r.json()
+		response: await r.json()
 	};
 };
