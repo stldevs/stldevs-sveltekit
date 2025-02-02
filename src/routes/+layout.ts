@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ params }) => {
-	const r = await fetch('https://stldevs.com/stldevs-api/runs')
+export const load: PageServerLoad = async ({ params, fetch }) => {
+	const r = await fetch('/stldevs-api/runs')
 	if (!r.ok) {
 		console.log('Error fetching', r);
 		return { lastRun: '1970-01-01' };

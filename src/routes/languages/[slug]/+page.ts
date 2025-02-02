@@ -1,10 +1,10 @@
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ params, url }) => {
+export const load: PageServerLoad = async ({ params, url, fetch }) => {
 	const slug = params.slug;
 	const p = Number(url.searchParams.get('p') || 0);
 
-	let serverUrl = `https://stldevs.com/stldevs-api/langs/${encodeURIComponent(slug)}`;
+	let serverUrl = `/stldevs-api/langs/${encodeURIComponent(slug)}`;
 	if (p) {
 		serverUrl += `?offset=${p*25}&limit=25`
 	}
