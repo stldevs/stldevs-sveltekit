@@ -16,7 +16,7 @@
 </style>
 
 <script>
-  let { lastrun, title = 'St. Louis Developers' } = $props();
+  let { lastrun = '', title = 'St. Louis Developers' } = $props();
 
   import LastRun from "$lib/components/LastRun.svelte";
 </script>

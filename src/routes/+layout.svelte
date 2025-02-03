@@ -1,8 +1,10 @@
 <script>
 	import Nav from '$lib/components/Nav.svelte';
 	import Hero from "$lib/components/Hero.svelte";
+	import Spinner from "$lib/components/Spinner.svelte";
 
 	let { data, children } = $props();
+	import { navigating } from '$app/state'
 </script>
 
 <style>
@@ -25,6 +27,9 @@
 <main>
 	{#if data.params && data.params.slug}
 		<Hero title={data.params.slug}/>
+	{/if}
+	{#if navigating.to}
+		<div><Spinner/></div>
 	{/if}
 	{@render children()}
 </main>
