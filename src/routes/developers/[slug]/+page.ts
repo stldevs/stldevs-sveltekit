@@ -1,10 +1,11 @@
 import type { PageLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
-export const load: PageLoad = async ({ params, fetch }) => {
+export const load: PageLoad = async ({ params, url, fetch }) => {
 	const slug = params.slug;
 
-	const r = await fetch(`/stldevs-api/devs/${encodeURIComponent(slug)}`);
+	const api = new URL(`/stldevs-api/devs/${encodeURIComponent(slug)}`, url.origin);
+	const r = await fetch(api);
 	if (!r.ok) {
 		if (r.status === 404) {
 			return error(404, { message: 'Developer not found' });
