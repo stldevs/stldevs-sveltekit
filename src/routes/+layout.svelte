@@ -25,8 +25,8 @@
 <Nav/>
 
 <main>
-	{#if data.params && data.params.slug}
-		<Hero title={data.params.slug}/>
+	{#if data.slug}
+		<Hero title={data.slug}/>
 	{/if}
 	{#if navigating.to}
 		<div><Spinner/></div>
