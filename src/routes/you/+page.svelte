@@ -42,8 +42,8 @@
 		<a class="button" href="/stldevs-api/login">Log in with GitHub</a>
 
 		<p>
-			If you'd rather not log in with GitHub, mention me on Twitter and I'll opt you out.
-			<a href="https://twitter.com/nill" target="_blank">@nill</a>
+			If you'd rather not log in with GitHub, mention me on Bluesky and I'll opt you out.
+			<a href="https://bsky.app/profile/jakecoffman.com" target="_blank">@jakecoffman.com</a>
 		</p>
 	{:else}
 		Welcome {me.name || me.login}!

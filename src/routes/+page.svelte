@@ -15,16 +15,16 @@
 	<h3>Hello world!</h3>
 	<p>
 		This is a site for discovering what open source work developers are doing in the Greater St. Louis region by
-		harvesting public information from Github.
+		harvesting public information from GitHub.
 	</p>
 	<p>
-		If a user on Github has self-identified as being from St. Louis, they are included here. To do this, add
-		<code>St. Louis</code> to your location in your Github profile.
+		If a user on GitHub has self-identified as being from St. Louis, they are included here. To do this, add
+		<code>St. Louis</code> to your location in your GitHub profile.
 	</p>
 
 	<h3>Did you know?</h3>
 	<p>
-		There are over 3,000 developers from St. Louis on Github that have pushed to over 6,000 code repositories.
+		There are over 3,000 developers from St. Louis on GitHub that have pushed to over 6,000 code repositories.
 	</p>
 	<p>
 		The author of Ansible for DevOps is from St. Louis. The creator of the sublime-text git plugin is too.
