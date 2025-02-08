@@ -13,7 +13,7 @@
 <em>
   Last run
   {#if page.data.lastRun}
-    {page.data.lastRun}
+    {new Date(page.data.lastRun).toLocaleString()}
   {:else}
 <!--    <i><Spinner color="white"/></i>-->
   {/if}

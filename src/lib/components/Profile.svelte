@@ -75,7 +75,7 @@
 
   import Repos from "$lib/components/Repos.svelte";
 
-  let {response, slug, isOrg} = $props();
+  let {response, slug, isOrg, me} = $props();
 
   function toggleHide(login, val) {
     fetch(`/stldevs-api/devs/${login}`, {
@@ -149,22 +149,22 @@
       </ul>
     </div>
   </section>
-  <!--{#if $session.me && $session.me.is_admin}-->
-  <!--  <aside class="admin">-->
-  <!--    <h3>Admin</h3>-->
-  <!--    {#if response.User.hide}-->
-  <!--      User is hidden-->
-  <!--    {:else}-->
-  <!--      User is visible-->
-  <!--    {/if}-->
-  <!--    <button onclick={toggleHide(response.User.login, !response.User.hide)}>-->
-  <!--      Toggle Visibility-->
-  <!--    </button>-->
-  <!--    <button onclick={delUser(response.User.login)}>-->
-  <!--      Delete User-->
-  <!--    </button>-->
-  <!--  </aside>-->
-  <!--{/if}-->
+  {#if me && me.is_admin}
+    <aside class="admin">
+      <h3>Admin</h3>
+      {#if response.User.hide}
+        User is hidden
+      {:else}
+        User is visible
+      {/if}
+      <button onclick={toggleHide(response.User.login, !response.User.hide)}>
+        Toggle Visibility
+      </button>
+      <button onclick={delUser(response.User.login)}>
+        Delete User
+      </button>
+    </aside>
+  {/if}
 
   <aside class="flex gap">
     <button onclick={() => hideUnstarred = !hideUnstarred} class="flex gap align-center">

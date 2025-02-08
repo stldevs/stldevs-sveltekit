@@ -12,6 +12,8 @@ export const load: PageLoad = async ({ fetch }) => {
 	if (!r2.ok) {
 		if (r2.status === 401) {
 			console.log('Not logged in');
+			// uncomment to test as an admin without running locally
+			// me = {name: "jakecoffman", is_admin: true}
 		} else {
 			console.log('Error fetching', r2);
 		}
@@ -22,8 +24,7 @@ export const load: PageLoad = async ({ fetch }) => {
 	const lastRun = await r.json();
 
 	return {
-		// TODO parse and display in local timezone
-		lastRun: lastRun.split('T')[0],
+		lastRun: lastRun,
 		me
 	};
 };
