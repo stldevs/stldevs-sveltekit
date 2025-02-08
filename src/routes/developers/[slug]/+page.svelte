@@ -8,4 +8,4 @@
 	<title>STL Devs | {slug}</title>
 </svelte:head>
 
-<Profile bind:response={response} {slug} {me}/>
+<Profile {response} {slug} {me}/>

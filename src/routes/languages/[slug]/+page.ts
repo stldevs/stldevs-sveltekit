@@ -1,4 +1,5 @@
 import type { PageLoad } from './$types';
+import { error } from '@sveltejs/kit';
 
 export const load: PageLoad = async ({ params, url, fetch }) => {
 	const slug = params.slug;
@@ -8,11 +9,14 @@ export const load: PageLoad = async ({ params, url, fetch }) => {
 	if (p) {
 		serverUrl += `?offset=${p*25}&limit=25`
 	}
-	const res = await fetch(serverUrl);
-	if (!res.ok) {
-		return console.log('Error fetching', res);
+	const r = await fetch(serverUrl);
+	if (!r.ok) {
+		if (r.status === 404) {
+			return error(404, { message: 'Language not found' });
+		}
+		return error(500, { message: 'Error fetching language' });
 	}
-	const response = await res.json();
+	const response = await r.json();
 
 	return { response, slug, p };
 };
