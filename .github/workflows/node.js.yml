@@ -23,7 +23,7 @@ jobs:
 
       # TODO upload build dir instead of rebuilding on server
       - name: Deploy
-        uses: appleboy/ssh-action@v1
+        uses: appleboy/ssh-action@v1.2.0
         if: github.event_name != 'pull_request'
         with:
           host: stldevs.com
