@@ -38,8 +38,8 @@
 	<h3>Contribute</h3>
 
 	<p>
-		Contributions are welcome to <a href="http://github.com/jakecoffman/stldevs">the API</a> or <a
-		href="https://github.com/jakecoffman/stldevs-sveltekit">the UI</a>! Filing issues is the easiest way to contribute.
+		Contributions are welcome to <a href="http://github.com/stldevs/stldevs">the API</a> or <a
+		href="https://github.com/stldevs/stldevs-sveltekit">the UI</a>! Filing issues is the easiest way to contribute.
 	</p>
 
 	<p>
