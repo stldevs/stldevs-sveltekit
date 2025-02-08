@@ -1,6 +1,7 @@
 <script>
 	import Hero from "$lib/components/Hero.svelte";
-	const session = "$lib/stores/session";
+	let { data } = $props();
+	let { me } = $derived(data);
 
 	async function logout() {
 		await fetch(`/stldevs-api/logout`, {credentials: 'include'})
@@ -16,8 +17,7 @@
 		if (!r.ok) {
 			return alert(await r.text())
 		}
-		const profile = await r.json()
-		session.set({me: profile})
+		data.me = await r.json()
 	}
 	async function optIn() {
 		const r = await fetch(`/stldevs-api/me`, {
@@ -29,15 +29,14 @@
 		if (!r.ok) {
 			return alert(await r.text())
 		}
-		const profile = await r.json()
-		session.set({me: profile})
+		data.me = await r.json()
 	}
 </script>
 
 <Hero title="You"/>
 
 <article>
-	{#if !session.me}
+	{#if !me}
 		<p>You aren't logged in. You can log in to opt-out of this website.</p>
 
 		<a class="button" href="/stldevs-api/login">Log in with GitHub</a>
@@ -47,26 +46,26 @@
 			<a href="https://twitter.com/nill" target="_blank">@nill</a>
 		</p>
 	{:else}
-		Welcome {session.me.name || session.me.login}!
-		{#if !session.me.hide}
+		Welcome {me.name || me.login}!
+		{#if !me.hide}
 			<div>
 				<p>To opt out of stldevs click here:</p>
-				<button on:click={optOut}>Opt Out</button>
+				<button onclick={optOut}>Opt Out</button>
 			</div>
 		{:else}
 			<div>
 				<p>You should be hidden now.</p>
 				<p>To opt back in to stldevs click here:</p>
-				<button on:click={optIn}>Opt In</button>
+				<button onclick={optIn}>Opt In</button>
 			</div>
 		{/if}
 
-		{#if session.me.is_admin}
+		{#if me.is_admin}
 			<p>You're an admin</p>
 		{/if}
 
 		<p>
-			<button on:click={logout}>Logout</button>
+			<button onclick={logout}>Logout</button>
 		</p>
 	{/if}
 </article>
