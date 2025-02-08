@@ -12,7 +12,6 @@ export const load: PageLoad = async ({ fetch }) => {
 	if (!r2.ok) {
 		if (r2.status === 401) {
 			console.log('Not logged in');
-			me = {login: 'jakecoffman'}
 		} else {
 			console.log('Error fetching', r2);
 		}
