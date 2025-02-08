@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -21,8 +21,9 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      # TODO upload build dir instead of rebuilding on server
       - name: Deploy
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1
         if: github.event_name != 'pull_request'
         with:
           host: stldevs.com
@@ -32,6 +33,8 @@ jobs:
           script: |
             cd /opt/stldevs-sveltekit
             git pull
+            nvm use 20
             npm ci
+            rm -rf build
             npm run build
             sudo service stldevs-sveltekit restart

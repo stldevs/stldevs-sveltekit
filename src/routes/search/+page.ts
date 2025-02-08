@@ -5,8 +5,8 @@ export const load: PageLoad = async ({ url, fetch }) => {
 
 	if (!q) {
 		return {
-			users: [],
-			repos: [],
+			users: null,
+			repos: null,
 			q: ''
 		};
 	}
