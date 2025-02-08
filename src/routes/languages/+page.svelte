@@ -59,7 +59,7 @@
 		<div class="card">
 
 			<a href="/languages/{encodeURIComponent(Language)}" rel="prefetch">
-				<img src="/langs/{Language}.svg" loading="lazy" alt="{Language} logo" onerror="{ev => ev.target.src = '/langs/Unknown.svg'}">
+				<img src="/langs/{encodeURIComponent(Language)}.svg" loading="lazy" alt="{Language} logo" onerror="{ev => ev.target.src = '/langs/Unknown.svg'}">
 			</a>
 			<div class="inner">
 				<h3>
