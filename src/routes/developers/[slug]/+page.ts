@@ -4,7 +4,7 @@ import { error } from '@sveltejs/kit';
 export const load: PageLoad = async ({ params, fetch }) => {
 	const slug = params.slug;
 
-	const r = await fetch(`/stldevs-api/devs/${encodeURIComponent(slug)}`);
+	const r = await fetch(`https://stldevs.com/stldevs-api/devs/${encodeURIComponent(slug)}`);
 	if (!r.ok) {
 		if (r.status === 404) {
 			return error(404, { message: 'Developer not found' });
