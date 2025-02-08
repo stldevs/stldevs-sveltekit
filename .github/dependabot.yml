@@ -13,3 +13,13 @@ updates:
       everything:
         patterns:
           - "*"
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+    allow:
+      - dependency-type: direct
+    groups:
+      everything:
+        patterns:
+          - "*"
