@@ -10,5 +10,5 @@
 	<title>STL Devs | Developers</title>
 </svelte:head>
 
-<Hero title="Top Devs in St. Louis" lastrun="true"/>
+<Hero title="Most Starred Devs in St. Louis" lastrun="true"/>
 <Listing response={response} route="developers"/>

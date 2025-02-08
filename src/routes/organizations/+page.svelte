@@ -10,5 +10,5 @@
 	<title>STL Devs | Organizations</title>
 </svelte:head>
 
-<Hero title="Top Orgs in St. Louis" lastrun="true"/>
+<Hero title="Most Starred Orgs in St. Louis" lastrun="true"/>
 <Listing response={response} route="organizations"/>

@@ -52,7 +52,7 @@
     }
 </style>
 
-<Hero title="Top Languages in St. Louis" lastrun="true"/>
+<Hero title="Most Starred Languages in St. Louis" lastrun="true"/>
 
 <section>
 	{#each data.toplangs as {Language, Count, Users}}
