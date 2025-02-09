@@ -100,7 +100,7 @@
     })
   }
 
-  let hideUnstarred = true
+  let hideUnstarred = $state(true)
 </script>
 
 <article>
