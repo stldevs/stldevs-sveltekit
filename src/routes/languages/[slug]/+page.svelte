@@ -20,7 +20,7 @@
 	import { goto } from '$app/navigation';
 
 	let { data } = $props();
-	let { response, slug, p } = data;
+	let { response, slug, p } = $derived(data);
 
 	let page = $state(p ? p : 0);
 	const pageSize = 25;
