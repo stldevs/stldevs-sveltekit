@@ -59,7 +59,7 @@
 		<div class="card">
 
 			<a href="/languages/{encodeURIComponent(Language)}" rel="prefetch">
-				<img src="/langs/{Language.replace('#', 'sharp').replace('+', 'plus')}.svg" loading="lazy" alt="{Language} logo" onerror="{ev => ev.target.src = '/langs/Unknown.svg'}">
+				<img src="/langs/{Language.replace('#', 'sharp').replaceAll('+', 'plus')}.svg" loading="lazy" alt="{Language} logo" onerror="{ev => ev.target.src = '/langs/Unknown.svg'}">
 			</a>
 			<div class="inner">
 				<h3>
