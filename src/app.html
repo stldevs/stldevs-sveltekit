@@ -13,4 +13,11 @@
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents" id="body">%sveltekit.body%</div>
 	</body>
+<script>
+	navigator.serviceWorker.getRegistrations().then(registrations => {
+		for (const registration of registrations) {
+			registration.unregister();
+		}
+	});
+</script>
 </html>
