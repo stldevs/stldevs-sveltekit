@@ -21,8 +21,6 @@ updates:
       - dependency-type: direct
     groups:
       dev:
-        dependency-type:
-          - "development"
+        dependency-type: "development"
       prod:
-        dependency-type:
-          - "production"
+        dependency-type: "production"
