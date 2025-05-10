@@ -20,6 +20,9 @@ updates:
     allow:
       - dependency-type: direct
     groups:
-      everything:
-        patterns:
-          - "*"
+      dev:
+        dependency-type:
+          - "development"
+      prod:
+        dependency-type:
+          - "production"
