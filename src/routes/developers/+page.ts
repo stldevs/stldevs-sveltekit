@@ -1,13 +1,18 @@
 import type { PageLoad } from './$types';
 
-export const load: PageLoad = async ({ fetch }) => {
-	const r = await fetch('/stldevs-api/devs?type=User')
+export const load: PageLoad = async ({ fetch, url }) => {
+	const sort = url.searchParams.get('sort') || 'stars';
+	const r = await fetch(`/stldevs-api/devs?type=User&sort=${encodeURIComponent(sort)}`)
 	if (!r.ok) {
 		console.log('Error fetching', r);
-		return {};
+		return {
+			response: [],
+			sort
+		};
 	}
 
 	return {
-		response: await r.json()
+		response: await r.json(),
+		sort
 	};
 };
