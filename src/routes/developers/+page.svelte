@@ -39,7 +39,7 @@
 </style>
 
 <svelte:head>
-	<title>STL Devs | Developers</title>
+	<title>STL Devs | {title}</title>
 </svelte:head>
 
 <Hero title={title} lastrun="true"/>
