@@ -1,6 +1,5 @@
 <script>
 	let {data} = $props();
-	let {response, sort} = data;
 
 	import Listing from "$lib/components/Listing.svelte";
 	import Hero from "$lib/components/Hero.svelte";
@@ -18,8 +17,12 @@
 		followers: 'Most Followed',
 		public_repos: 'Most Repos'
 	};
-	const currentSort = sort || 'stars';
-	const title = `${sortLabels[currentSort]} Devs in St. Louis`;
+	
+	// Use $derived to make these reactive to data changes
+	const response = $derived(data.response);
+	const sort = $derived(data.sort);
+	const currentSort = $derived(sort || 'stars');
+	const title = $derived(`${sortLabels[currentSort]} Devs in St. Louis`);
 </script>
 
 <style>
