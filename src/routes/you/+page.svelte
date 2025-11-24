@@ -12,7 +12,7 @@
 			credentials: 'include',
 			method: 'PATCH',
 			headers: {'content-type': 'application/json'},
-			body: JSON.stringify({Hide: true}),
+			body: JSON.stringify({hide: true}),
 		})
 		if (!r.ok) {
 			return alert(await r.text())
@@ -24,7 +24,7 @@
 			credentials: 'include',
 			method: 'PATCH',
 			headers: {'content-type': 'application/json'},
-			body: JSON.stringify({Hide: false})
+			body: JSON.stringify({hide: false})
 		})
 		if (!r.ok) {
 			return alert(await r.text())

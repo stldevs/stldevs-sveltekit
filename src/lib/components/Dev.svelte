@@ -48,7 +48,7 @@
 <script>
   const { dev, route } = $props();
 
-  let r = $derived(route ? route : dev.type === 'User' ? 'developers' : 'organizations')
+  let r = $derived(route ? route : dev.type === 'user' ? 'developers' : 'organizations')
 
   import FaCodeBranch from 'svelte-icons/fa/FaCodeBranch.svelte'
   import FaStar from 'svelte-icons/fa/FaStar.svelte'
@@ -66,7 +66,7 @@
           {dev.name || dev.login}
       </a>
     </h3>
-    <ul class={dev.type !== 'User' ? 'three-wide' : ''}>
+    <ul class={dev.type !== 'user' ? 'three-wide' : ''}>
         {#if dev.stars !== undefined}
           <li title="stars">
             <i>
@@ -83,7 +83,7 @@
             <span>{dev.forks.toLocaleString()}</span>
           </li>
         {/if}
-        {#if dev.type === 'User'}
+        {#if dev.type === 'user'}
           <li title="followers">
             <i>
               <FaUserCircle/>

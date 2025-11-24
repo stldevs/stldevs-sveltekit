@@ -61,11 +61,11 @@
 			<section>
 				<div class="flex">
 					<h4 class="flex-1">
-						{repo.Name} (by <a href="/developers/{repo.Owner}" rel="prefetch">{repo.Owner}</a>)
+						{repo.name || repo.Name} (by <a href="/developers/{repo.owner || repo.Owner}" rel="prefetch">{repo.owner || repo.Owner}</a>)
 					</h4>
-					<span><i><FaStar/></i>{repo.StargazersCount} <i><FaCodeBranch/></i> {repo.ForksCount}</span>
+					<span><i><FaStar/></i>{repo.stargazers_count || repo.StargazersCount} <i><FaCodeBranch/></i> {repo.forks_count || repo.ForksCount}</span>
 				</div>
-				<em>{repo.Description}</em>
+				<em>{repo.description || repo.Description}</em>
 			</section>
 		{/each}
 	</article>

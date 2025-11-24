@@ -8,7 +8,7 @@
   export let hideUnstarred=true
 
   $: language = lang || 'No Language'
-  $: filteredRepos = !hideUnstarred ? repos : repos.filter(repo => repo.StargazersCount || repo.ForksCount)
+  $: filteredRepos = !hideUnstarred ? repos : repos.filter(repo => repo.stargazers_count || repo.forks_count)
 </script>
 
 {#if filteredRepos.length > 0 }
@@ -18,21 +18,21 @@
     <section class="repo">
       <header>
         <h4>
-          {#if repo.Fork === true}
+          {#if repo.fork === true}
             <i title="is a fork">
               <FaCodeBranch/>
             </i>
           {/if}
-          <a href="https://github.com/{slug}/{repo.Name}" target="_blank">{repo.Name}</a>
+          <a href="https://github.com/{slug}/{repo.name}" target="_blank">{repo.name}</a>
         </h4>
         <span>
-          <i title="stars"><FaStar/></i>&nbsp;{repo.StargazersCount.toLocaleString()}
+          <i title="stars"><FaStar/></i>&nbsp;{repo.stargazers_count.toLocaleString()}
         </span>
         <span>
-          <i title="forks"><FaCodeBranch/></i>&nbsp;{repo.ForksCount.toLocaleString()}
+          <i title="forks"><FaCodeBranch/></i>&nbsp;{repo.forks_count.toLocaleString()}
         </span>
       </header>
-      <em>{repo.Description || ''}</em>
+      <em>{repo.description || ''}</em>
     </section>
   {/each}
 </fieldset>

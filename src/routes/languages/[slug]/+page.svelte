@@ -30,13 +30,13 @@
 
 	async function next() {
 		page++;
-		document.getElementsByTagName('header')[0].scrollIntoView({behavior: 'smooth'});
+		document.getElementById('top')?.scrollIntoView({behavior: 'smooth'});
 		await goto(`/languages/${encodeURIComponent(slug)}?p=${page}`)
 	}
 
 	async function prev() {
 		page--;
-		document.getElementsByTagName('header')[0].scrollIntoView({behavior: 'smooth'});
+		document.getElementById('top')?.scrollIntoView({behavior: 'smooth'});
 		await goto(`/languages/${encodeURIComponent(slug)}?p=${page}`)
 	}
 </script>
@@ -46,21 +46,21 @@
 </svelte:head>
 
 <article>
-	<h3 ref="top">{response.count.toLocaleString()} {slug} users in St. Louis</h3>
+	<h3 id="top">{(response.count || response.Count || 0).toLocaleString()} {slug} users in St. Louis</h3>
 	<p class="page-of">Page {page} of {pages}</p>
 	{#each response.languages as lang}
 		<div>
-			<a href={lang.type === 'User' ? `/developers/${lang.Owner}` : `/organizations/${lang.Owner}`} rel="prefetch">
-				{lang.name || lang.Owner}
-			</a> has <b>{lang.Count.toLocaleString()}</b> <i><FaStar/></i> from {slug} repos:
+			<a href={lang.type === 'user' ? `/developers/${lang.owner || lang.Owner}` : `/organizations/${lang.owner || lang.Owner}`} rel="prefetch">
+				{lang.name || lang.Name || lang.owner || lang.Owner}
+			</a> has <b>{(lang.count || lang.Count || 0).toLocaleString()}</b> <i><FaStar/></i> from {slug} repos:
 			<ul>
-				{#each lang.Repos as r}
+				{#each (lang.repos || lang.Repos || []) as r}
 					<li>
-						<a href="https://github.com/{lang.Owner}/{r.Name}" target="_blank">
-							{r.Name}
+						<a href="https://github.com/{lang.owner || lang.Owner}/{r.name || r.Name}" target="_blank">
+							{r.name || r.Name}
 						</a>
-						(<b>{r.StargazersCount.toLocaleString()}</b> <i><FaStar/></i>)
-						<small>{r.Description || '(No description)'}</small>
+						(<b>{(r.stargazers_count || r.StargazersCount || 0).toLocaleString()}</b> <i><FaStar/></i>)
+						<small>{r.description || r.Description || '(No description)'}</small>
 					</li>
 				{/each}
 			</ul>

@@ -55,26 +55,29 @@
 <Hero title="Most Starred Languages in St. Louis" lastrun="true"/>
 
 <section>
-	{#each data.toplangs as {Language, Count, Users}}
+	{#each data.toplangs as lang}
+		{@const language = lang.language || lang.Language}
+		{@const count = lang.count || lang.Count}
+		{@const users = lang.users || lang.Users}
 		<div class="card">
 
-			<a href="/languages/{encodeURIComponent(Language)}" rel="prefetch">
-				<img src="/langs/{Language.replace('#', 'sharp').replaceAll('+', 'plus')}.svg" loading="lazy" alt="{Language} logo" onerror="{ev => ev.target.src = '/langs/Unknown.svg'}">
+			<a href="/languages/{encodeURIComponent(language)}" rel="prefetch">
+				<img src="/langs/{language.replace('#', 'sharp').replaceAll('+', 'plus')}.svg" loading="lazy" alt="{language} logo" onerror="{ev => ev.target.src = '/langs/Unknown.svg'}">
 			</a>
 			<div class="inner">
 				<h3>
-					<a href="/languages/{encodeURIComponent(Language)}" rel="prefetch">
-						{Language}
+					<a href="/languages/{encodeURIComponent(language)}" rel="prefetch">
+						{language}
 					</a>
 				</h3>
 				<ul>
 					<li title="repositories" class="flex-1">
 						<i><FaBook/></i>
-						<span>{Count.toLocaleString()}</span>
+						<span>{count.toLocaleString()}</span>
 					</li>
 					<li title="users">
 						<i><FaUserCircle/></i>
-						<span>{Users.toLocaleString()}</span>
+						<span>{users.toLocaleString()}</span>
 					</li>
 				</ul>
 			</div>

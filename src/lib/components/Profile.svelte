@@ -76,13 +76,15 @@
   import Repos from "$lib/components/Repos.svelte";
 
   let {response, slug, isOrg, me} = $props();
+  let user = $derived(response.user || response.User);
+  let repos = $derived(response.repos || response.Repos);
 
   function toggleHide(login, val) {
     fetch(`/stldevs-api/devs/${login}`, {
       credentials: 'include',
       method: 'PATCH',
       headers: {'content-type': 'application/json'},
-      body: JSON.stringify({Hide: val}),
+      body: JSON.stringify({hide: val}),
     })
     .then(async r => {
       if (r.ok) {
@@ -106,44 +108,44 @@
 <article>
   <section>
     <div class="profile">
-      <img class="avatar" src={response.User.avatar_url} loading="lazy" alt="{response.User.Login}'s photo">
+      <img class="avatar" src={user.avatar_url} loading="lazy" alt="{user.login}'s photo">
       <ul class="user-info">
-        <li><a href="https://github.com/{response.User.login}" target="_blank">
-                {response.User.name || response.User.login}
+        <li><a href="https://github.com/{user.login}" target="_blank">
+                {user.name || user.login}
               <!--                    <i class="sup"><FaExternalLinkSquareAlt/></i>-->
         </a></li>
         <li>
-            {#if response.User.blog}
-              <a href={response.User.blog.startsWith('http') ? response.User.blog : `http://${response.User.blog}` }
+            {#if user.blog}
+              <a href={user.blog.startsWith('http') ? user.blog : `http://${user.blog}` }
                  target="_blank">
-                  {response.User.blog}
+                  {user.blog}
               </a>
             {/if}
         </li>
       <li>
-          {#if response.User.email}
-            <a href={`mailto:${response.User.email}`}>{response.User.email}</a>
+          {#if user.email}
+            <a href={`mailto:${user.email}`}>{user.email}</a>
           {/if}
-        <li class="bio">{response.User.bio || ''}</li>
+        <li class="bio">{user.bio || ''}</li>
         <li>
           <ul class="stats">
               {#if !isOrg}
                 <li title="followers"><i>
                   <FaUserCircle/>
-                </i>{response.User.followers.toLocaleString()}</li>
+                </i>{user.followers.toLocaleString()}</li>
                 <li title="gists"><i>
                   <FaBookmark/>
-                </i>{response.User.public_gists.toLocaleString()}</li>
+                </i>{user.public_gists.toLocaleString()}</li>
               {/if}
             <li title="repositories"><i>
               <FaBook/>
-            </i>{response.User.public_repos.toLocaleString()}</li>
+            </i>{user.public_repos.toLocaleString()}</li>
             <li title="total stars"><i>
               <FaStar/>
-            </i>{response.User.stars ? response.User.stars.toLocaleString() : 0}</li>
+            </i>{user.stars ? user.stars.toLocaleString() : 0}</li>
             <li title="total forks"><i>
               <FaCodeBranch/>
-            </i>{response.User.forks ? response.User.forks.toLocaleString() : 0}</li>
+            </i>{user.forks ? user.forks.toLocaleString() : 0}</li>
           </ul>
         </li>
       </ul>
@@ -152,15 +154,15 @@
   {#if me && me.is_admin}
     <aside class="admin">
       <h3>Admin</h3>
-      {#if response.User.hide}
+      {#if user.hide}
         User is hidden
       {:else}
         User is visible
       {/if}
-      <button onclick={toggleHide(response.User.login, !response.User.hide)}>
+      <button onclick={() => toggleHide(user.login, !user.hide)}>
         Toggle Visibility
       </button>
-      <button onclick={delUser(response.User.login)}>
+      <button onclick={() => delUser(user.login)}>
         Delete User
       </button>
     </aside>
@@ -178,8 +180,8 @@
   </aside>
 
   <section class="code">
-      {#each Object.entries(response.Repos) as [lang, repos] }
-        <Repos {slug} {lang} {repos} {hideUnstarred}/>
+      {#each Object.entries(repos) as [lang, repoList] }
+        <Repos {slug} {lang} repos={repoList} {hideUnstarred}/>
       {/each}
   </section>
 </article>
