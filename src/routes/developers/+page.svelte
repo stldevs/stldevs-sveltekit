@@ -19,9 +19,7 @@
 	};
 	
 	// Use $derived to make these reactive to data changes
-	const response = $derived(data.response);
-	const sort = $derived(data.sort);
-	const currentSort = $derived(sort || 'stars');
+	const currentSort = $derived(data.sort || 'stars');
 	const title = $derived(`${sortLabels[currentSort]} Devs in St. Louis`);
 </script>
 
@@ -49,7 +47,7 @@
 
 <div class="sort-container">
 	<label for="sort-select">Sort by:</label>
-	<select id="sort-select" value={sort || 'stars'} onchange={handleSortChange}>
+	<select id="sort-select" value={data.sort || 'stars'} onchange={handleSortChange}>
 		<option value="stars">Stars</option>
 		<option value="forks">Forks</option>
 		<option value="followers">Followers</option>
@@ -57,4 +55,4 @@
 	</select>
 </div>
 
-<Listing response={response} route="developers"/>
+<Listing response={data.response} route="developers"/>
