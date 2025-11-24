@@ -5,7 +5,10 @@ export const load: PageLoad = async ({ fetch, url }) => {
 	const r = await fetch(`/stldevs-api/devs?type=User&sort=${sort}`)
 	if (!r.ok) {
 		console.log('Error fetching', r);
-		return {};
+		return {
+			response: [],
+			sort
+		};
 	}
 
 	return {

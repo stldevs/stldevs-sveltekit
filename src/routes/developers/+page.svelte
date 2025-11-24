@@ -8,8 +8,18 @@
 
 	async function handleSortChange(event) {
 		const newSort = event.target.value;
-		await goto(`?sort=${newSort}`);
+		await goto(`?sort=${encodeURIComponent(newSort)}`);
 	}
+
+	// Compute dynamic title based on sort parameter
+	const sortLabels = {
+		stars: 'Most Starred',
+		forks: 'Most Forked',
+		followers: 'Most Followed',
+		public_repos: 'Most Repos'
+	};
+	const currentSort = sort || 'stars';
+	const title = `${sortLabels[currentSort]} Devs in St. Louis`;
 </script>
 
 <style>
@@ -32,7 +42,7 @@
 	<title>STL Devs | Developers</title>
 </svelte:head>
 
-<Hero title="Most Starred Devs in St. Louis" lastrun="true"/>
+<Hero title={title} lastrun="true"/>
 
 <div class="sort-container">
 	<label for="sort-select">Sort by:</label>
