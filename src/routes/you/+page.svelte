@@ -1,5 +1,6 @@
 <script>
 	import Hero from "$lib/components/Hero.svelte";
+	import { invalidateAll } from "$app/navigation";
 	let { data } = $props();
 	let { me } = $derived(data);
 
@@ -7,30 +8,21 @@
 		await fetch(`/stldevs-api/logout`, {credentials: 'include'})
 		location.reload()
 	}
-	async function optOut() {
+	async function setHide(hide) {
 		const r = await fetch(`/stldevs-api/me`, {
 			credentials: 'include',
 			method: 'PATCH',
 			headers: {'content-type': 'application/json'},
-			body: JSON.stringify({hide: true}),
+			body: JSON.stringify({hide}),
 		})
 		if (!r.ok) {
 			return alert(await r.text())
 		}
 		data.me = await r.json()
+		await invalidateAll()
 	}
-	async function optIn() {
-		const r = await fetch(`/stldevs-api/me`, {
-			credentials: 'include',
-			method: 'PATCH',
-			headers: {'content-type': 'application/json'},
-			body: JSON.stringify({hide: false})
-		})
-		if (!r.ok) {
-			return alert(await r.text())
-		}
-		data.me = await r.json()
-	}
+	const optOut = () => setHide(true)
+	const optIn = () => setHide(false)
 </script>
 
 <Hero title="You"/>
