@@ -33,8 +33,5 @@
 	},
 	"dependencies": {
 		"svelte-icons": "^2.1.0"
-	},
-	"engines": {
-		"node": ">=22"
 	}
 }
