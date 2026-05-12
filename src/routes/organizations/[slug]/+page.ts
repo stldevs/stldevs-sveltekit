@@ -4,7 +4,9 @@ import type { PageLoad } from './$types';
 export const load: PageLoad = async ({ params, fetch }) => {
 	const slug = params.slug;
 
-	const r = await fetch(`/stldevs-api/devs/${encodeURIComponent(slug)}`);
+	const r = await fetch(`/stldevs-api/devs/${encodeURIComponent(slug)}`, {
+		credentials: 'include'
+	});
 	if (!r.ok) {
 		if (r.status === 404) {
 			return error(404, { message: 'Organization not found' });

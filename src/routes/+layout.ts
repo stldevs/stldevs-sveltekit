@@ -8,7 +8,7 @@ export const load: PageLoad = async ({ params, fetch }) => {
 	}
 
 	let me = null;
-	const r2 = await fetch('/stldevs-api/me')
+	const r2 = await fetch('/stldevs-api/me', { credentials: 'include' })
 	if (!r2.ok) {
 		if (r2.status === 401) {
 			console.log('Not logged in');
